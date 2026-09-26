@@ -1,4 +1,7 @@
 import { profile } from "@/lib/content";
+import Bio from "@/components/about/Bio";
+import SkillsGrouped from "@/components/about/SkillsGrouped";
+import EducationTimeline from "@/components/about/EducationTimeline";
 
 export default function AboutPage() {
   return (
@@ -6,24 +9,14 @@ export default function AboutPage() {
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">About</h1>
         <p className="mt-1 text-sm text-muted">{profile.location}</p>
-        <p className="mt-4 max-w-2xl text-muted">{profile.longBio}</p>
+        <div className="mt-4">
+          <Bio profile={profile} />
+        </div>
       </div>
 
       <div>
         <h2 className="text-xl font-medium">Skills</h2>
-        <ul className="mt-3 flex flex-wrap gap-2">
-          {profile.skills.length === 0 && (
-            <li className="text-sm text-muted">TODO</li>
-          )}
-          {profile.skills.map((skill) => (
-            <li
-              key={skill}
-              className="rounded-full border border-border px-3 py-1 text-sm"
-            >
-              {skill}
-            </li>
-          ))}
-        </ul>
+        <SkillsGrouped skills={profile.skills} />
       </div>
 
       <div>
@@ -48,18 +41,7 @@ export default function AboutPage() {
 
       <div>
         <h2 className="text-xl font-medium">Education</h2>
-        <ol className="mt-3 flex flex-col gap-4 border-l border-border pl-4">
-          {profile.education.map((item, i) => (
-            <li key={i}>
-              <p className="font-medium">
-                {item.degree} · {item.school}
-              </p>
-              <p className="text-sm text-muted">
-                {item.start} – {item.end}
-              </p>
-            </li>
-          ))}
-        </ol>
+        <EducationTimeline items={profile.education} />
       </div>
     </div>
   );

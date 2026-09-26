@@ -37,6 +37,7 @@ export interface Profile {
   location: string;
   shortBio: string;
   longBio: string;
+  interests: string;
   skills: string[];
   experience: ExperienceItem[];
   education: EducationItem[];
