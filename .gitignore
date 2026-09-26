@@ -40,6 +40,9 @@ yarn-error.log*
 # Claude Code harness state, not project config
 .claude/scheduled_tasks.lock
 
+# Playwright MCP review artifacts (screenshots/console logs from ui-reviewer)
+.playwright-mcp/
+
 # personal photo/voice source files — not committed until explicitly confirmed for publishing
 /public/images/avatar-source.webp
 
