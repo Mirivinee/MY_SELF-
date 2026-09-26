@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { certificates } from "@/lib/content";
 import CertificatesList from "@/components/certificates/CertificatesList";
+
+export const metadata: Metadata = {
+  title: "Certificates",
+  description: "Courses and programs I've completed.",
+};
 
 export default function CertificatesPage() {
   return (

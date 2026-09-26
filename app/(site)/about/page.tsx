@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { profile } from "@/lib/content";
 import Bio from "@/components/about/Bio";
 import SkillsGrouped from "@/components/about/SkillsGrouped";
 import EducationTimeline from "@/components/about/EducationTimeline";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "Background, skills, and education.",
+};
 
 export default function AboutPage() {
   return (

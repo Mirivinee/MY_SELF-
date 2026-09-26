@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Claude Code harness state, not project config
+.claude/scheduled_tasks.lock
+
 # personal photo/voice source files — not committed until explicitly confirmed for publishing
 /public/images/avatar-source.webp
 
