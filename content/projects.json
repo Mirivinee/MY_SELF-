@@ -1,10 +1,14 @@
 [
   {
-    "slug": "TODO-project-one",
-    "title": "TODO",
-    "description": "TODO",
-    "tech": ["TODO"],
-    "githubUrl": "TODO",
-    "screenshots": []
+    "slug": "sample-project",
+    "title": "Sample Project (placeholder — replace me)",
+    "description": "This card is placeholder content so the interactive layout can be built and reviewed. Swap in a real title, description, tech stack, GitHub link, and 2–4 real screenshots.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "githubUrl": "https://github.com/Mirivinee",
+    "screenshots": [
+      "/images/projects/placeholder-1.svg",
+      "/images/projects/placeholder-2.svg",
+      "/images/projects/placeholder-3.svg"
+    ]
   }
 ]
