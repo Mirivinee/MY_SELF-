@@ -1,0 +1,36 @@
+{
+  "name": "TODO",
+  "role": "TODO",
+  "shortBio": "TODO",
+  "longBio": "TODO",
+  "skills": [],
+  "experience": [
+    {
+      "title": "TODO",
+      "org": "TODO",
+      "start": "TODO",
+      "end": "TODO",
+      "description": "TODO"
+    }
+  ],
+  "education": [
+    {
+      "degree": "TODO",
+      "school": "TODO",
+      "start": "TODO",
+      "end": "TODO"
+    }
+  ],
+  "personality": "TODO",
+  "speakingStyle": "TODO",
+  "currentlyLookingFor": "TODO",
+  "links": {
+    "github": "TODO",
+    "linkedin": "TODO",
+    "email": "TODO",
+    "resume": "TODO"
+  },
+  "twinBoundaries": {
+    "mustNotDiscuss": ["salary", "family", "address", "phone"]
+  }
+}
