@@ -6,6 +6,7 @@ import type { Emotion } from "@/lib/content";
 import { getTtsProvider } from "@/lib/voice";
 import MicButton from "./MicButton";
 import Captions from "./Captions";
+import Avatar from "./Avatar";
 
 interface DisplayMessage {
   role: "user" | "assistant";
@@ -29,6 +30,8 @@ export default function ChatPanel() {
   const [muted, setMuted] = useState(false);
   const [captionText, setCaptionText] = useState("");
   const [captionVisible, setCaptionVisible] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
+  const [emotion, setEmotion] = useState<Emotion>(profile.defaultEmotion);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [ttsSupported, setTtsSupported] = useState(false);
 
@@ -54,8 +57,12 @@ export default function ChatPanel() {
       onStart: () => {
         setCaptionText(text);
         setCaptionVisible(true);
+        setSpeaking(true);
       },
-      onEnd: () => setCaptionVisible(false),
+      onEnd: () => {
+        setCaptionVisible(false);
+        setSpeaking(false);
+      },
     });
   }
 
@@ -65,6 +72,7 @@ export default function ChatPanel() {
       if (next) {
         getTtsProvider().cancel();
         setCaptionVisible(false);
+        setSpeaking(false);
       }
       return next;
     });
@@ -97,6 +105,7 @@ export default function ChatPanel() {
 
       const reply = (await res.json()) as { text: string; emotion: Emotion };
       setMessages((prev) => [...prev, { role: "assistant", content: reply.text, emotion: reply.emotion }]);
+      setEmotion(reply.emotion);
       speak(reply.text);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
@@ -107,6 +116,7 @@ export default function ChatPanel() {
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
+      <Avatar emotion={emotion} speaking={speaking} />
       <Captions text={captionText} visible={captionVisible} />
 
       <div
