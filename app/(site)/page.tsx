@@ -1,5 +1,5 @@
 import Link from "next/link";
-import profile from "@/content/profile.json";
+import { profile } from "@/lib/content";
 
 export default function HomePage() {
   return (

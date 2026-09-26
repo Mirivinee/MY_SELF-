@@ -1,33 +1,32 @@
 {
-  "name": "TODO",
-  "role": "TODO",
-  "shortBio": "TODO",
-  "longBio": "TODO",
-  "skills": [],
-  "experience": [
-    {
-      "title": "TODO",
-      "org": "TODO",
-      "start": "TODO",
-      "end": "TODO",
-      "description": "TODO"
-    }
-  ],
+  "name": "Vineeth JN",
+  "role": "B.Tech Digital Transformation (AI/ML) Student",
+  "location": "Greater Bengaluru Area",
+  "shortBio": "Emerging professional bridging science, technology & creative thinking.",
+  "longBio": "I'm a B.Tech student in Digital Transformation (AI/ML) at Atria University, exploring how technology, science, and creative thinking come together. I work primarily with Python, and I'm building up my foundations in web development and data.",
+  "skills": ["Python", "HTML/CSS (Basic)", "SQLite"],
+  "experience": [],
   "education": [
     {
-      "degree": "TODO",
-      "school": "TODO",
+      "degree": "B.Tech, Digital Transformation (AI/ML)",
+      "school": "Atria University",
+      "start": "August 2024",
+      "end": "August 2028"
+    },
+    {
+      "degree": "12th, Computer Science",
+      "school": "MGS PU College",
       "start": "TODO",
-      "end": "TODO"
+      "end": "2024"
     }
   ],
   "personality": "TODO",
   "speakingStyle": "TODO",
   "currentlyLookingFor": "TODO",
   "links": {
-    "github": "TODO",
-    "linkedin": "TODO",
-    "email": "TODO",
+    "github": "https://github.com/Mirivinee",
+    "linkedin": "https://www.linkedin.com/in/vineeth-jn-5a51a2305",
+    "email": "neetha.naveen559@gmail.com",
     "resume": "TODO"
   },
   "twinBoundaries": {

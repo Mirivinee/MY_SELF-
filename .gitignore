@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# personal photo/voice source files — not committed until explicitly confirmed for publishing
+/public/images/avatar-source.webp
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

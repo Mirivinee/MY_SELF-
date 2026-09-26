@@ -1,4 +1,4 @@
-import certificates from "@/content/certificates.json";
+import { certificates } from "@/lib/content";
 
 export default function CertificatesPage() {
   return (

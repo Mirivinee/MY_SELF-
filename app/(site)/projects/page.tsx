@@ -1,4 +1,4 @@
-import projects from "@/content/projects.json";
+import { projects } from "@/lib/content";
 
 export default function ProjectsPage() {
   return (

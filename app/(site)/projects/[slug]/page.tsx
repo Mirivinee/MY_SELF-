@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import projects from "@/content/projects.json";
+import { projects } from "@/lib/content";
 
 export default async function ProjectDetailPage({
   params,

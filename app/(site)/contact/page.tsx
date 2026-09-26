@@ -1,4 +1,4 @@
-import profile from "@/content/profile.json";
+import { profile } from "@/lib/content";
 
 export default function ContactPage() {
   return (
