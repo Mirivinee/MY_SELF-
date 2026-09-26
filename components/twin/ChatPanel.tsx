@@ -3,6 +3,9 @@
 import { useState, useRef, useEffect, type FormEvent } from "react";
 import { profile } from "@/lib/content";
 import type { Emotion } from "@/lib/content";
+import { getTtsProvider } from "@/lib/voice";
+import MicButton from "./MicButton";
+import Captions from "./Captions";
 
 interface DisplayMessage {
   role: "user" | "assistant";
@@ -23,11 +26,49 @@ export default function ChatPanel() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [muted, setMuted] = useState(false);
+  const [captionText, setCaptionText] = useState("");
+  const [captionVisible, setCaptionVisible] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [ttsSupported, setTtsSupported] = useState(false);
+
+  useEffect(() => {
+    // One-time browser-capability check — see the matching comment in
+    // MicButton.tsx for why this belongs in an effect, not render.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setTtsSupported(getTtsProvider().supported);
+    return () => {
+      getTtsProvider().cancel();
+    };
+  }, []);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, loading]);
+
+  function speak(text: string) {
+    if (muted) return;
+    const tts = getTtsProvider();
+    if (!tts.supported) return;
+    tts.speak(text, {
+      onStart: () => {
+        setCaptionText(text);
+        setCaptionVisible(true);
+      },
+      onEnd: () => setCaptionVisible(false),
+    });
+  }
+
+  function toggleMute() {
+    setMuted((prev) => {
+      const next = !prev;
+      if (next) {
+        getTtsProvider().cancel();
+        setCaptionVisible(false);
+      }
+      return next;
+    });
+  }
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -56,6 +97,7 @@ export default function ChatPanel() {
 
       const reply = (await res.json()) as { text: string; emotion: Emotion };
       setMessages((prev) => [...prev, { role: "assistant", content: reply.text, emotion: reply.emotion }]);
+      speak(reply.text);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
@@ -65,6 +107,8 @@ export default function ChatPanel() {
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
+      <Captions text={captionText} visible={captionVisible} />
+
       <div
         ref={scrollRef}
         role="log"
@@ -97,7 +141,7 @@ export default function ChatPanel() {
         </p>
       )}
 
-      <form onSubmit={handleSubmit} className="flex items-center gap-2">
+      <form onSubmit={handleSubmit} className="flex flex-wrap items-center gap-2">
         <label htmlFor="twin-input" className="sr-only">
           Message the AI twin
         </label>
@@ -109,12 +153,35 @@ export default function ChatPanel() {
           placeholder="Ask me something…"
           maxLength={MAX_LENGTH}
           disabled={loading}
-          className="flex-1 rounded-full border border-border bg-background px-4 py-2.5 text-sm outline-none focus-visible:border-accent"
+          className="min-w-0 flex-1 rounded-full border border-border bg-background px-4 py-2.5 text-sm outline-none focus-visible:border-accent"
         />
+        <MicButton onTranscript={(text) => setInput(text.slice(0, MAX_LENGTH))} disabled={loading} />
+        {ttsSupported && (
+          <button
+            type="button"
+            onClick={toggleMute}
+            aria-pressed={muted}
+            aria-label={muted ? "Unmute spoken replies" : "Mute spoken replies"}
+            title={muted ? "Unmute spoken replies" : "Mute spoken replies"}
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-muted transition-colors hover:text-foreground"
+          >
+            {muted ? (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M11 5 6 9H2v6h4l5 4V5z" />
+                <path d="M23 9l-6 6M17 9l6 6" />
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M11 5 6 9H2v6h4l5 4V5z" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+              </svg>
+            )}
+          </button>
+        )}
         <button
           type="submit"
           disabled={loading || input.trim().length === 0}
-          className="rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-40"
+          className="shrink-0 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-40"
         >
           Send
         </button>
