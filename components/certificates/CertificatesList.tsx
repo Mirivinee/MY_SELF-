@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import type { Certificate } from "@/lib/content";
 import PlaceholderBadge from "@/components/ui/PlaceholderBadge";
+import AiTakeButton from "@/components/ui/AiTakeButton";
 
 function isPlaceholder(cert: Certificate) {
   return (
@@ -107,7 +108,7 @@ export default function CertificatesList({ certificates }: { certificates: Certi
         const linkable = cert.linkedinUrl !== "TODO";
         const rowClassName = placeholder
           ? "border-l-4 border-l-amber-500/60 bg-amber-500/5 p-6"
-          : "p-6 transition-colors hover:bg-surface";
+          : "p-6 pb-0 transition-colors hover:bg-surface";
 
         return (
           <li key={cert.title}>
@@ -123,6 +124,11 @@ export default function CertificatesList({ certificates }: { certificates: Certi
             ) : (
               <div className={rowClassName} aria-disabled="true">
                 <CertificateBody cert={cert} />
+              </div>
+            )}
+            {!placeholder && (
+              <div className="px-6 pb-6">
+                <AiTakeButton kind="certificate" title={cert.title} description={cert.description} />
               </div>
             )}
           </li>

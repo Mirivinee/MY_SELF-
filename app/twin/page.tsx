@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import ChatPanel from "@/components/twin/ChatPanel";
+import { profile } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "AI Twin",
@@ -7,16 +9,19 @@ export const metadata: Metadata = {
 
 export default function TwinPage() {
   return (
-    <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 px-6 py-24 text-center">
-      <h1 className="text-3xl font-semibold tracking-tight">AI Digital Twin</h1>
-      <p className="text-muted">
-        This is an AI-generated version of me, not a real person. It&apos;s coming in a later phase —
-        for now, head to the{" "}
-        <a href="/contact" className="underline">
-          contact page
-        </a>{" "}
-        to reach the real one.
-      </p>
+    <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 px-6 py-16 text-center">
+      <div>
+        <h1 className="text-3xl font-semibold tracking-tight">AI Digital Twin</h1>
+        <p className="mt-2 text-muted">
+          This is an AI-generated version of {profile.name}, not a real person. It only knows
+          what&apos;s on this site — for anything else, use the{" "}
+          <a href="/contact" className="underline">
+            contact page
+          </a>
+          .
+        </p>
+      </div>
+      <ChatPanel />
     </div>
   );
 }
