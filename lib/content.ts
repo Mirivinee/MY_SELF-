@@ -17,6 +17,20 @@ export interface EducationItem {
   end: string;
 }
 
+export type Emotion =
+  | "happy"
+  | "thinking"
+  | "surprised"
+  | "neutral"
+  | "laughing"
+  | "serious";
+
+export interface SpeakingStyle {
+  tone: string;
+  guidelines: string[];
+  examplePhrases: string[];
+}
+
 export interface Profile {
   name: string;
   role: string;
@@ -27,8 +41,9 @@ export interface Profile {
   experience: ExperienceItem[];
   education: EducationItem[];
   personality: string;
-  speakingStyle: string;
-  currentlyLookingFor: string;
+  speakingStyle: SpeakingStyle;
+  lookingFor: string;
+  defaultEmotion: Emotion;
   links: {
     github: string;
     linkedin: string;
