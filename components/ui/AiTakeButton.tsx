@@ -26,6 +26,7 @@ export default function AiTakeButton({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ kind, title, description }),
+        signal: AbortSignal.timeout(15_000),
       });
       const body = await res.json().catch(() => null);
       setTake(body?.text ?? pickCannedTake(title));

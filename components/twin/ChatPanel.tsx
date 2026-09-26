@@ -89,6 +89,8 @@ export default function ChatPanel() {
     setLoading(true);
     setError(null);
 
+    const timeout = AbortSignal.timeout(20_000);
+
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
@@ -96,6 +98,7 @@ export default function ChatPanel() {
         body: JSON.stringify({
           messages: nextMessages.map(({ role, content }) => ({ role, content })),
         }),
+        signal: timeout,
       });
 
       if (!res.ok) {
@@ -108,7 +111,8 @@ export default function ChatPanel() {
       setEmotion(reply.emotion);
       speak(reply.text);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong.");
+      const timedOut = err instanceof DOMException && err.name === "TimeoutError";
+      setError(timedOut ? "That took too long — please try again." : err instanceof Error ? err.message : "Something went wrong.");
     } finally {
       setLoading(false);
     }

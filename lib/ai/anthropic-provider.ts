@@ -23,7 +23,7 @@ export class AnthropicAiProvider implements AiProvider {
   private client: Anthropic;
 
   constructor(apiKey: string) {
-    this.client = new Anthropic({ apiKey });
+    this.client = new Anthropic({ apiKey, timeout: 20_000 });
   }
 
   async chat(messages: ChatMessage[]): Promise<ChatReply> {

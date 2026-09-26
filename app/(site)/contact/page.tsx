@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { profile } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Email, GitHub, LinkedIn, and resume.",
+};
 
 export default function ContactPage() {
   return (
