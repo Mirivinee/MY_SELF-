@@ -1,0 +1,63 @@
+- generic [active] [ref=f4e1]:
+  - link "Skip to content" [ref=f4e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f4e3]:
+    - navigation "Primary" [ref=f4e4]:
+      - link "Vineeth JN" [ref=f4e5] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f4e6]:
+        - button "Toggle color theme" [ref=f4e7]
+        - button "Open menu" [ref=f4e10]
+  - main [ref=f4e13]:
+    - generic [ref=f4e15]:
+      - generic [ref=f4e16]:
+        - heading "About" [level=1] [ref=f4e17]
+        - paragraph [ref=f4e18]: Greater Bengaluru Area
+        - generic [ref=f4e20]:
+          - paragraph [ref=f4e21]: I'm a B.Tech student in Digital Transformation (AI/ML) at Atria University, exploring how technology, science, and creative thinking come together. I work primarily with Python, and I'm building up my foundations in web development and data.
+          - generic [ref=f4e22]:
+            - generic [ref=f4e23]:
+              - paragraph [ref=f4e24]: Interests
+              - generic [ref=f4e25]: Needs real data
+            - paragraph [ref=f4e28]: TODO
+      - generic [ref=f4e29]:
+        - heading "Skills" [level=2] [ref=f4e30]
+        - generic [ref=f4e31]:
+          - generic [ref=f4e32]:
+            - paragraph [ref=f4e33]: Languages
+            - list [ref=f4e34]:
+              - listitem [ref=f4e35]: Python
+          - generic [ref=f4e36]:
+            - paragraph [ref=f4e37]: Web
+            - list [ref=f4e38]:
+              - listitem [ref=f4e39]: HTML/CSS (Basic)
+          - generic [ref=f4e40]:
+            - paragraph [ref=f4e41]: Databases
+            - list [ref=f4e42]:
+              - listitem [ref=f4e43]: SQLite
+      - generic [ref=f4e44]:
+        - heading "Experience" [level=2] [ref=f4e45]
+        - list [ref=f4e46]:
+          - listitem [ref=f4e47]: None yet
+      - generic [ref=f4e48]:
+        - heading "Education" [level=2] [ref=f4e49]
+        - list [ref=f4e50]:
+          - listitem [ref=f4e51]:
+            - paragraph [ref=f4e54]: B.Tech, Digital Transformation (AI/ML) · Atria University
+            - paragraph [ref=f4e55]: August 2024 – August 2028
+          - listitem [ref=f4e56]:
+            - generic [ref=f4e58]:
+              - paragraph [ref=f4e59]: 12th, Computer Science · MGS PU College
+              - generic [ref=f4e60]: Needs real data
+            - paragraph [ref=f4e63]: "Start: TODO – 2024"
+  - contentinfo [ref=f4e64]:
+    - generic [ref=f4e65]:
+      - paragraph [ref=f4e66]: © 2026 Vineeth JN
+      - generic [ref=f4e67]:
+        - link "GitHub" [ref=f4e68] [cursor=pointer]:
+          - /url: https://github.com/Mirivinee
+        - link "LinkedIn" [ref=f4e69] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/vineeth-jn-5a51a2305
+        - link "Email" [ref=f4e70] [cursor=pointer]:
+          - /url: mailto:neetha.naveen559@gmail.com
+  - button "Open Next.js Dev Tools" [ref=f4e76] [cursor=pointer]

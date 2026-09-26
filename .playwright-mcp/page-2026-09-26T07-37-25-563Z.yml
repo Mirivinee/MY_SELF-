@@ -1,0 +1,45 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - navigation "Primary" [ref=e4]:
+      - link "Vineeth JN" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - list [ref=e6]:
+        - listitem [ref=e7]:
+          - link "Home" [ref=e8] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e9]:
+          - link "Projects" [ref=e10] [cursor=pointer]:
+            - /url: /projects
+        - listitem [ref=e11]:
+          - link "Certificates" [ref=e12] [cursor=pointer]:
+            - /url: /certificates
+        - listitem [ref=e13]:
+          - link "About" [ref=e14] [cursor=pointer]:
+            - /url: /about
+        - listitem [ref=e15]:
+          - link "Contact" [ref=e16] [cursor=pointer]:
+            - /url: /contact
+        - listitem [ref=e17]:
+          - link "AI Twin" [ref=e18] [cursor=pointer]:
+            - /url: /twin
+      - button "Toggle color theme" [ref=e20]
+  - main [ref=e23]:
+    - generic [ref=e24]:
+      - paragraph [ref=e25]: "404"
+      - heading "Page not found" [level=1] [ref=e26]
+      - paragraph [ref=e27]: The page you're looking for doesn't exist or may have moved.
+      - link "Back to home" [ref=e28] [cursor=pointer]:
+        - /url: /
+  - contentinfo [ref=e29]:
+    - generic [ref=e30]:
+      - paragraph [ref=e31]: © 2026 Vineeth JN
+      - generic [ref=e32]:
+        - link "GitHub" [ref=e33] [cursor=pointer]:
+          - /url: https://github.com/Mirivinee
+        - link "LinkedIn" [ref=e34] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/vineeth-jn-5a51a2305
+        - link "Email" [ref=e35] [cursor=pointer]:
+          - /url: mailto:neetha.naveen559@gmail.com
+  - button "Open Next.js Dev Tools" [ref=e41] [cursor=pointer]
