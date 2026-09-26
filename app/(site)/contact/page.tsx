@@ -13,13 +13,23 @@ export default function ContactPage() {
         </li>
         <li>
           GitHub:{" "}
-          <a href={profile.links.github} className="text-foreground underline">
+          <a
+            href={profile.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-foreground underline"
+          >
             {profile.links.github}
           </a>
         </li>
         <li>
           LinkedIn:{" "}
-          <a href={profile.links.linkedin} className="text-foreground underline">
+          <a
+            href={profile.links.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-foreground underline"
+          >
             {profile.links.linkedin}
           </a>
         </li>

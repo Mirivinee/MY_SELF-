@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 import { profile } from "@/lib/content";
 
@@ -16,6 +17,7 @@ const links = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (!open) return;
@@ -36,16 +38,24 @@ export default function Nav() {
           {profile.name}
         </Link>
         <ul className="hidden items-center gap-6 text-sm sm:flex">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-muted transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {links.map((link) => {
+            const active = pathname === link.href;
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={
+                    active
+                      ? "font-medium text-foreground"
+                      : "text-muted transition-colors hover:text-foreground"
+                  }
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
         <div className="flex items-center gap-2">
           <ThemeToggle />
@@ -69,17 +79,25 @@ export default function Nav() {
       </nav>
       {open && (
         <ul id="mobile-nav" className="flex flex-col gap-1 border-t border-border px-6 py-3 text-sm sm:hidden">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="block rounded-lg px-2 py-2 text-muted transition-colors hover:bg-surface hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {links.map((link) => {
+            const active = pathname === link.href;
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={active ? "page" : undefined}
+                  className={
+                    active
+                      ? "block rounded-lg bg-surface px-2 py-2 font-medium text-foreground"
+                      : "block rounded-lg px-2 py-2 text-muted transition-colors hover:bg-surface hover:text-foreground"
+                  }
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       )}
     </header>

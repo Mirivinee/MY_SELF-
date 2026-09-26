@@ -9,10 +9,20 @@ export default function Footer() {
           © {year} {profile.name}
         </p>
         <div className="flex items-center gap-4">
-          <a href={profile.links.github} className="hover:text-foreground">
+          <a
+            href={profile.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground"
+          >
             GitHub
           </a>
-          <a href={profile.links.linkedin} className="hover:text-foreground">
+          <a
+            href={profile.links.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground"
+          >
             LinkedIn
           </a>
           <a href={`mailto:${profile.links.email}`} className="hover:text-foreground">
