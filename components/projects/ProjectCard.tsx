@@ -35,8 +35,13 @@ export default function ProjectCard({ project }: { project: Project }) {
     setActiveShot(0);
   }
 
-  // 3D tilt on hover, driven by quickTo, tracked via matchMedia so it
-  // stays in sync with prefers-reduced-motion and reverts on unmount.
+  // 3D tilt on hover, tracked via matchMedia so it stays in sync with
+  // prefers-reduced-motion and reverts on unmount. Uses plain gsap.to()
+  // with overwrite:"auto" rather than quickTo: two independent quickTo
+  // setters (rotateX/rotateY) on the same element hit GSAP's internal
+  // resetTo/_updatePropTweens cache in a way that logs "not eligible for
+  // reset" once a combined-property tween (the mouseleave reset) has run
+  // on the same target — plain tweens don't use that fast-path at all.
   useGSAP(
     () => {
       const card = cardRef.current;
@@ -53,21 +58,17 @@ export default function ProjectCard({ project }: { project: Project }) {
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         reducedMotionRef.current = false;
 
-        const setRotateX = gsap.quickTo(tilt, "rotateX", {
-          duration: 0.5,
-          ease: "power3",
-        });
-        const setRotateY = gsap.quickTo(tilt, "rotateY", {
-          duration: 0.5,
-          ease: "power3",
-        });
-
         function handleMouseMove(e: MouseEvent) {
           const rect = card!.getBoundingClientRect();
           const px = (e.clientX - rect.left) / rect.width - 0.5;
           const py = (e.clientY - rect.top) / rect.height - 0.5;
-          setRotateY(px * MAX_TILT_DEG * 2);
-          setRotateX(-py * MAX_TILT_DEG * 2);
+          gsap.to(tilt!, {
+            rotateY: px * MAX_TILT_DEG * 2,
+            rotateX: -py * MAX_TILT_DEG * 2,
+            duration: 0.5,
+            ease: "power3",
+            overwrite: "auto",
+          });
         }
 
         function handleMouseLeaveTilt() {
@@ -76,7 +77,7 @@ export default function ProjectCard({ project }: { project: Project }) {
             rotateY: 0,
             duration: 0.8,
             ease: "elastic.out(1, 0.4)",
-            overwrite: true,
+            overwrite: "auto",
           });
         }
 
@@ -144,6 +145,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               className="project-card-shot object-cover"
               style={{ opacity: i === 0 ? 1 : 0 }}
               priority={i === 0}
+              loading={i === 0 ? undefined : "eager"}
             />
           ))}
           {project.screenshots.length > 1 && (
